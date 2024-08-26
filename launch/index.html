@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunset Minecraft Server</title>
+    <link rel="icon" href="5276192492653500309.jpg">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('your-photo.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            text-align: center;
+            background-color: rgba(0, 0, 255, 0.5);
+            /* Adds a blue overlay */
+        }
+        
+        #server-title {
+            width: 100%;
+            max-width: 700px;
+            height: auto;
+            margin-bottom: 30px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        
+        #server-status,
+        #uptime,
+        #player-map {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: rgba(0, 0, 139, 0.6);
+            /* Dark blue background */
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 139, 0.7);
+            /* Dark blue shadow */
+            width: 80%;
+            max-width: 600px;
+            animation: slideInUp 2s ease-in-out;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+        
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 15px;
+        }
+        
+        @keyframes slideInUp {
+            0% {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        #uptime:hover,
+        #server-status:hover,
+        #player-map:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+        
+        #footer {
+            position: absolute;
+            bottom: 10px;
+            font-size: 14px;
+            opacity: 0.8;
+            animation: fadeIn 3s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        .link-button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: rgba(0, 0, 139, 0.7);
+            /* Dark blue button */
+            color: #fff;
+            text-decoration: none;
+            border-radius: 15px;
+            transition: transform 0.3s, opacity 0.3s;
+            animation: slideInUp 2s ease-in-out;
+        }
+        
+        .link-button:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <img id="server-title" src="server-title.png" alt="Server Title Image">
+    <!-- Замените server-title.png на ваше изображение заголовка -->
+
+    <div id="server-status">
+        <h2>Server Status</h2>
+        <p>Loading...</p>
+    </div>
+
+    <div id="uptime">
+        <h2>Server Uptime</h2>
+        <p>Loading...</p>
+    </div>
+
+    <div id="player-map">
+        <h2>Player Map</h2>
+        <iframe src="http://<IP-сервера>:8123"></iframe>
+    </div>
+
+    <a href="https://t.me/caseen" class="link-button">Caseen Chat</a>
+    <a href="https://t.me/sunset_h0use" class="link-button">Наш ТГК</a>
+
+    <div id="footer">Сайт сделан <a href="https://t.me/caseen" style="color: #fff;">@caseen</a></div>
+
+    <script>
+        // Fetch server status
+        fetch('https://api.mcsrvstat.us/2/d1.neocloud.su:25571')
+            .then(response => response.json())
+            .then(data => {
+                document.querySelector('#server-status p').textContent =
+                    `Server is ${data.online ? 'Online' : 'Offline'} with ${data.players.online} players.`;
+            });
+
+        // Fetch uptime data
+        fetch('https://api.example.com/uptime')
+            .then(response => response.json())
+            .then(data => {
+                document.querySelector('#uptime p').textContent = `Uptime: ${data.uptime}%`;
+            });
+    </script>
+
+</body>
+
+</html>
